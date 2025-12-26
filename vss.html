@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VSS | EdTech & Training</title>
+
+  <!-- Industrial fonts & base reset -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #050816;
+      --bg-section: #0b1120;
+      --accent: #06d4c6;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-color: #1f2933;
+      --danger: #f97373;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 22px 45px rgba(4, 48, 148, 0.816);
+      --shadow-soft-sm: 0 10px 25px rgba(15, 23, 42, 0.7);
+      --transition-fast: 220ms ease;
+      --max-width: 1120px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(
+          circle at top left,
+          rgb(31, 48, 61),
+          transparent 55%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(15, 25, 38, 0.746),
+          transparent 55%
+        ),
+        var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px 18px;
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.96),
+        rgba(15, 23, 42, 0.85)
+      );
+      backdrop-filter: blur(16px);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: var(--shadow-soft-sm);
+      position: sticky;
+      top: 16px;
+      z-index: 40;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #f97373, #7f1d1d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9fafb;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-meta span:first-child {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-meta span:last-child {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    nav a:hover {
+      background: rgba(246, 98, 44, 0.835);
+      color: var(--text-main);
+    }
+
+    .primary-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, #ee7e22ee, #f64f0dd1);
+      color: #141f2169;
+      font-size: 0.86rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 12px 30px rgba(248, 120, 56, 0.528);
+      white-space: nowrap;
+    }
+
+    .primary-cta span.icon {
+      font-size: 1.1rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: transparent;
+      color: var(--text-main);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Main layout */
+    main {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    section {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(
+          circle at top left,
+          rgba(56, 189, 248, 0.06),
+          transparent 55%
+        ),
+        rgba(15, 23, 42, 0.96);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 22px;
+    }
+
+    section + section {
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
+    }
+
+    .section-heading {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #e5e7eb;
+    }
+
+    /* Hero */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2rem, 3vw, 2.45rem);
+      line-height: 1.17;
+      margin-bottom: 10px;
+    }
+
+    .hero-copy h1 span {
+      background: linear-gradient(135deg, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy p {
+      color: var(--text-muted);
+      max-width: 36rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags span {
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-footnote {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-footnote strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-footnote span.badge {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      color: #e0f2fe;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* Hero visual / form */
+    .hero-panel {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 60%),
+        linear-gradient(135deg, #020617, #020617);
+      padding: 18px 18px 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 230px;
+    }
+
+    .panel-label {
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(148, 163, 184, 0.95);
+      margin-bottom: 8px;
+    }
+
+    .panel-metric {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .panel-metric span.value {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
+    .panel-metric span.suffix {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .panel-metric-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .panel-stack {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      font-size: 0.74rem;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      text-align: center;
+      color: #e5e7eb;
+    }
+
+    .pill span {
+      display: block;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-size: 0.7rem;
+    }
+
+    .hero-panel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-panel-footer span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.24);
+      margin-right: 6px;
+    }
+
+    .sparkline {
+      width: 110px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.35), transparent),
+        rgba(15, 23, 42, 0.96);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sparkline::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 0,
+        transparent 55%,
+        rgba(56, 189, 248, 0.6) 65%,
+        transparent 80%
+      );
+      transform: translateX(-100%);
+      animation: shimmer 3.2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    .hero-panel-orbit {
+      position: absolute;
+      inset: -40%;
+      border-radius: 999px;
+      border: 1px dashed rgba(56, 189, 248, 0.16);
+      pointer-events: none;
+    }
+
+    /* Who it's for */
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.8rem;
+    }
+
+    /* Flagship programs */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .program-card {
+      border-radius: var(--radius-md);
+      padding: 12px 12px 13px;
+      background: radial-gradient(
+          circle at top,
+          rgba(56, 189, 248, 0.14),
+          transparent 60%
+        ),
+        rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.85);
+      border-color: rgba(56, 189, 248, 0.8);
+    }
+
+    .program-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .program-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .program-tagline {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
+
+    .program-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(248, 250, 252, 0.14);
+    }
+
+    /* Build + partner + delivery */
+    .three-column {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 2.2fr) minmax(0, 2.2fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .subsection {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 14px 14px 16px;
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .subsection h3 {
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+    }
+
+    .subsection p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .check-list li {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      font-size: 0.8rem;
+      color: #22c55e;
+    }
+
+    /* Delivery models */
+    .delivery-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .delivery-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    /* Lead form */
+    .lead-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .lead-form label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .lead-form input,
+    .lead-form select {
+      width: 100%;
+      padding: 8px 9px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .lead-form input::placeholder {
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    .lead-form input:focus,
+    .lead-form select:focus {
+      border-color: rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .form-row .field {
+      flex: 1 1 130px;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 4px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .form-footer span.safe-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-footer span.safe-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .secondary-cta {
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border var(--transition-fast);
+    }
+
+    .secondary-cta:hover {
+      background: rgba(30, 64, 175, 0.95);
+      border-color: rgba(129, 140, 248, 0.9);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 20px;
+      padding: 16px 14px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    footer a {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-actions a {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      header {
+        border-radius: 18px;
+        padding-inline: 14px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .three-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .page-shell {
+        padding-inline: 10px;
+      }
+
+      section {
+        padding-inline: 16px;
+      }
+
+      .cards-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      header {
+        gap: 12px;
+      }
+
+      .brand-meta span:last-child {
+        display: none;
+      }
+    }
+
+    /* mobile slideout nav */
+    .nav-drawer {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(18px);
+      transform: translateY(-100%);
+      transition: transform 220ms ease-out;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 80px;
+    }
+
+    .nav-drawer.open {
+      transform: translateY(0);
+    }
+
+    .nav-drawer-inner {
+      width: 100%;
+      max-width: 420px;
+      padding-inline: 22px;
+    }
+
+    .nav-drawer-inner a {
+      display: block;
+      padding: 10px 0;
+      font-size: 0.95rem;
+      color: #e5e7eb;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .nav-drawer-inner a:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-mark">V</div>
+        <div class="brand-meta">
+          <span>VATE SoftSys</span>
+          <span>Industry-ready EdTech & Training</span>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#hero">Programs</a>
+        <a href="#who">Who it’s for</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#contact">Contact</a>
+        <button class="primary-cta" type="button" data-scroll-target="#lead-form">
+          <span class="icon">⇨</span>
+          Request curriculum
+        </button>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </header>
+
+    <!-- Mobile nav drawer -->
+    <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+      <div class="nav-drawer-inner">
+        <a href="#hero">Programs</a>
+        <a href="#who">Who it’s for</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#contact">Contact</a>
+        <a href="#lead-form">Request curriculum</a>
+      </div>
+    </div>
+
+    <main>
+      <!-- Hero -->
+      <section id="hero">
+        <p class="section-heading">GenAI • Cloud • Full stack</p>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1>
+              Industry-ready training for
+              <span>GenAI, Cloud & Full Stack talent.</span>
+            </h1>
+            <p>
+              VSS partners with colleges and enterprises to build deployable engineering teams
+              with structured labs, capstones, and governance built in.
+            </p>
+
+            <div class="hero-tags">
+              <span>60-hour GenAI labs + capstone</span>
+              <span>Cloud-native fundamentals</span>
+              <span>Placement-ready projects</span>
+            </div>
+
+            <div class="hero-footnote">
+              <span class="badge">Sell both short & long-term pathways</span>
+              <span><strong>3–6 month</strong> short tracks plus multi-term pathways for depth.</span>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Program outcomes">
+            <div>
+              <p class="panel-label">Outcomes snapshot</p>
+              <div class="panel-metric">
+                <span class="value">92%</span>
+                <span class="suffix">placement readiness</span>
+              </div>
+              <p class="panel-metric-caption">
+                Graduates benchmarked on real-world GitHub repos, code reviews, and live client-style projects.
+              </p>
+
+              <div class="panel-stack">
+                <div class="pill">
+                  GenAI 60h
+                  <span>RAG • agents • MLOps</span>
+                </div>
+                <div class="pill">
+                  Full Stack
+                  <span>API + cloud-native</span>
+                </div>
+                <div class="pill">
+                  Python + Data
+                  <span>EDA • pipelines</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-panel-footer">
+              <span>
+                <span class="dot"></span>
+                Cohort-based, instructor-led delivery with weekly governance.
+              </span>
+              <div class="sparkline" aria-hidden="true"></div>
+            </div>
+
+            <div class="hero-panel-orbit"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Who it’s for -->
+      <section id="who">
+        <p class="section-heading">Who it’s for</p>
+        <h2 class="section-title">Designed for students, colleges, and corporate upskilling.</h2>
+        <p>
+          VSS programs align academic outcomes with production-grade engineering expectations so that talent
+          can ship on day one.
+        </p>
+        <div class="chips-row">
+          <span class="chip">Students & graduating batches</span>
+          <span class="chip">Colleges & universities</span>
+          <span class="chip">Faculty development tracks</span>
+          <span class="chip">Corporate upskilling cohorts</span>
+        </div>
+      </section>
+
+      <!-- Flagship programs -->
+      <section id="programs">
+        <p class="section-heading">Flagship programs</p>
+        <h2 class="section-title">Modular tracks you can plug into any semester plan.</h2>
+
+        <div class="cards-grid">
+          <article class="program-card">
+            <span class="program-badge">GenAI</span>
+            <h3 class="program-title">GenAI Engineer • 60 hours</h3>
+            <p class="program-meta">Hands-on labs + capstone | LLMs • RAG • agentic workflows</p>
+            <p class="program-tagline">
+              Students build production-style assistants with observability, evaluation, and deployment.
+            </p>
+          </article>
+
+          <article class="program-card">
+            <span class="program-badge">Full stack</span>
+            <h3 class="program-title">Cloud-native Full Stack</h3>
+            <p class="program-meta">APIs • microservices • CI/CD • observability</p>
+            <p class="program-tagline">
+              From React frontends to containerized services deployed on modern cloud platforms.
+            </p>
+          </article>
+
+          <article class="program-card">
+            <span class="program-badge">Data</span>
+            <h3 class="program-title">Python + Data Foundation</h3>
+            <p class="program-meta">Data pipelines • analytics • dashboards</p>
+            <p class="program-tagline">
+              Strong Python fundamentals with data modelling and business storytelling.
+            </p>
+          </article>
+
+          <article class="program-card">
+            <span class="program-badge">DBA</span>
+            <h3 class="program-title">DBA Basics + Advanced</h3>
+            <p class="program-meta">SQL, indexing, performance, and security</p>
+            <p class="program-tagline">
+              Core RDBMS skills with exposure to distributed and cloud-native data stores.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Builds, partner model, delivery -->
+      <section id="delivery">
+        <p class="section-heading">Execution model</p>
+        <h2 class="section-title">What students build, how we partner, and how we deliver.</h2>
+
+        <div class="three-column">
+          <div class="subsection">
+            <h3>What students build</h3>
+            <p>Each cohort ships portfolio-grade work that maps directly to hiring manager expectations.</p>
+            <ul class="check-list">
+              <li>Capstone projects with real-world problem statements.</li>
+              <li>Production-style GitHub repos with issues, PRs, and reviews.</li>
+              <li>Deployments on cloud with monitoring and runbooks.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>College partner model</h3>
+            <p>Structured engagement models that slot into academic timetables without disruption.</p>
+            <ul class="check-list">
+              <li>MoU-driven partnership with co-branded certificates.</li>
+              <li>Placement readiness plus internship pathways and project credits.</li>
+              <li>Monthly governance cadence with dashboards for leadership.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Delivery models</h3>
+            <div class="delivery-pill-row">
+              <span class="delivery-pill">On-campus bootcamps</span>
+              <span class="delivery-pill">Hybrid weekend cohorts</span>
+              <span class="delivery-pill">Faculty enablement tracks</span>
+              <span class="delivery-pill">Corporate upskilling pods</span>
+            </div>
+
+            <!-- Lead form -->
+            <form class="lead-form" id="lead-form" aria-label="Partner lead form">
+              <div class="form-row">
+                <div class="field">
+                  <label for="collegeName">College / organization name</label>
+                  <input
+                    type="text"
+                    id="collegeName"
+                    name="collegeName"
+                    placeholder="e.g. Varanasi Institute of Technology"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="batchSize">Batch size</label>
+                  <input
+                    type="number"
+                    id="batchSize"
+                    name="batchSize"
+                    placeholder="Approx. learners"
+                    min="10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="program">Preferred program</label>
+                  <select id="program" name="program" required>
+                    <option value="">Select a track</option>
+                    <option value="GenAI">GenAI Engineer (60h)</option>
+                    <option value="FullStack">Full Stack + Cloud</option>
+                    <option value="PythonData">Python + Data Foundation</option>
+                    <option value="DBA">DBA Basics + Advanced</option>
+                    <option value="Custom">Custom blend</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="timeline">Preferred start window</label>
+                  <input
+                    type="month"
+                    id="timeline"
+                    name="timeline"
+                  />
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <span class="safe-label">
+                  <span class="safe-dot"></span>
+                  Typical response time under 24 hours on business days.
+                </span>
+                <button type="submit" class="primary-cta">
+                  <span class="icon">✚</span>
+                  Schedule exploratory call
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="contact">
+        <span>
+          © 2025 VATE SoftSys (VSS). Partnerships for colleges and enterprises across India.
+        </span>
+        <div class="footer-actions">
+          <a href="mailto:hello@vss-edtech.com">Contact team</a>
+          <a href="#" download>Download program brochure (PDF)</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const toggleButton = document.querySelector(".menu-toggle");
+    const navDrawer = document.getElementById("navDrawer");
+
+    if (toggleButton && navDrawer) {
+      toggleButton.addEventListener("click", () => {
+        const isOpen = navDrawer.classList.toggle("open");
+        navDrawer.setAttribute("aria-hidden", String(!isOpen));
+      });
+
+      navDrawer.addEventListener("click", (event) => {
+        if (event.target === navDrawer || event.target.tagName === "A") {
+          navDrawer.classList.remove("open");
+          navDrawer.setAttribute("aria-hidden", "true");
+        }
+      });
+    }
+
+    // Smooth scroll for CTAs
+    document.querySelectorAll("[data-scroll-target]").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const targetSelector = btn.getAttribute("data-scroll-target");
+        const target = targetSelector && document.querySelector(targetSelector);
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    // Basic lead form handling (no backend)
+    const leadForm = document.getElementById("lead-form");
+    if (leadForm) {
+      leadForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const college = leadForm.collegeName.value.trim();
+        const program = leadForm.program.value;
+
+        if (!college || !program) {
+          alert("Please fill all required fields before submitting.");
+          return;
+        }
+
+        alert(
+          "Thank you! Your request for a curriculum walkthrough has been captured. The VSS team will reach out within one business day."
+        );
+        leadForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
